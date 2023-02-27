@@ -1,0 +1,19 @@
+@each $color, $value in $default-colors {
+    .text-#{$color} {
+        color: $value !important;
+    }
+}
+
+@each $size, $value in $font-sizes {
+    .font-size-#{$size} {
+        font-size: $value !important;
+    }
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
