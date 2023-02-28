@@ -9,7 +9,7 @@
                 class="font-weight-600 font-size-14"
                 style="margin-bottom: 24px"
             >
-                <b-img src="/icons/home-equity.svg"></b-img> Home Equity Gain
+                <b-img src="/icons/home-equity.svg"></b-img> Home Equity Gains
             </b-card-sub-title>
 
             <div class="position-relative h-100 d-flex flex-column">
@@ -28,9 +28,9 @@
                     <b-card-text
                         class="text-muted font-size-14 font-weight-500"
                         style="margin-bottom: 24px"
+                        id="second-text"
                     >
-                        Add your Property Value to discover your Home Equity
-                        Gain.
+                        Add your Property Value to discover your Home Equity Gain
                     </b-card-text>
 
                     <div>
@@ -69,7 +69,7 @@ export default defineComponent({
 
     methods: {
         redirect() {
-            this.$router.push("/");
+            this.$router.push("/calculator/test-2");
         },
     },
 });

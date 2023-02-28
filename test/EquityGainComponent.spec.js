@@ -12,24 +12,26 @@ const mockRouter = {
     push: jest.fn(),
 };
 
-// mount() returns a wrapped Vue component we can interact with
-// pass the `localVue` to the mount options
-// pass $router
-const wrapper = mount(EquityGainComponent, {
+const createWrapper = (propsData, data) => mount(EquityGainComponent, { 
+    propsData,
     localVue,
     mocks: {
         $router: mockRouter,
     },
-    // propsData: {
-    //     name: 'Miguel'
-    // }
-});
+})
 
-describe("EquityGain.vue", () => {
-    test("Equity gain component should contain string Home Equity Gain", () => {
+const wrapper = createWrapper();
+
+describe("Test Component EquityGain.vue", () => {
+    test.failing('it is not equal', () => {
+        const byId = wrapper.find('#my-prop-id')
+        expect(wrapper.vm.name).toContain("Miguel");
+    });
+
+    test("Equity gain component should contain string called Home Equity Gain", () => {
         // Assert the rendered text of the component
-        expect(wrapper.text()).toContain(
-            "Add your Property Value to discover your"
+        expect(wrapper.find('#second-text').text()).toBe(
+            `Add your Property Value to discover your Home Equity Gain`
         );
 
         expect(wrapper.text()).toContain("Add Property Value");
@@ -41,10 +43,10 @@ describe("EquityGain.vue", () => {
         const button = wrapper.find("button");
         button.trigger("click");
         expect(mockRouter.push).toHaveBeenCalledTimes(1);
-        expect(mockRouter.push).toHaveBeenCalledWith("/");
+        expect(mockRouter.push).toHaveBeenCalledWith("/calculator/test-2");
     });
 
-    it('Message component has the .custom-card class', () => {
+    it('Root Card component has the .custom-card class', () => {
         expect(wrapper.find('.custom-card').exists()).toBe(true)
     })
 
@@ -60,6 +62,18 @@ describe("EquityGain.vue", () => {
     it('Prop render name should contain text Guest', () => {
         const byId = wrapper.find('#my-prop-id')
         expect(byId.text()).toContain("Guest");
+    })
+
+    test.failing('it is not equal', () => {
+        const byId = wrapper.find('#my-prop-id')
+        expect(wrapper.vm.name).toContain("Miguel");
+    });
+
+    it("Set props and expect render messsage", async () => {
+        await wrapper.setProps({ name: 'Miguel' })
+        const byId = wrapper.find('#my-prop-id')
+        expect(wrapper.vm.name).toContain("Miguel");
+        expect(byId.text()).toContain("Miguel");
     })
 
     it('verify that button has style background', () => {

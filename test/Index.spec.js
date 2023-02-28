@@ -35,6 +35,13 @@ describe("Index.vue", () => {
         const button = wrapper.find("button");
         button.trigger("click");
         expect(mockRouter.push).toHaveBeenCalledTimes(1);
-        expect(mockRouter.push).toHaveBeenCalledWith("/calculator/step-1");
+        expect(mockRouter.push).toHaveBeenCalledWith("/calculator/step-2");
     });
+
+    it('img has the correct inline styles', () => {
+        const img = wrapper.find('img')
+        expect(img.element.style.getPropertyValue('top')).toBe("0px");
+        expect(img.element.style.getPropertyValue('left')).toBe("0px");
+        expect(img.element.style.getPropertyValue('z-index')).toBe("-1");
+    })
 });
